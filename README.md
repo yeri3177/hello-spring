@@ -52,9 +52,12 @@
 
 ## 실습 환경
 
-- Java
-- Spring Boot
+- Java 17
+- Spring Boot 3.2.3
 - Spring MVC
 - Spring Data JPA
 - H2 Database
-- Maven 또는 Gradle (프로젝트 생성에 따라 다름)
+- Gradle
+- Spring Web
+- Thymeleaf
+- IntelliJ IDEA
