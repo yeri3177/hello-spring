@@ -1,9 +1,9 @@
 package hello.hellospring.repository;
-import hello.hellospring.domain.Member;
+import hello.hellospring.repository.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class MemoryMemberRepositoryTest {
