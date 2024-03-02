@@ -36,10 +36,26 @@ public class MemberService {
     /**
      * 회원가입
      */
+//    public Long join(Member member) {
+//        validateDuplicateMember(member); //중복 회원 검증
+//        memberRepository.save(member);
+//        return member.getId();
+//    }
+
+    /**
+     * AOP가 필요한 상황 : 시간을 측정하는 로직 추가 (공통 관심 사항)
+     */
     public Long join(Member member) {
-        validateDuplicateMember(member); //중복 회원 검증
-        memberRepository.save(member);
-        return member.getId();
+        long start = System.currentTimeMillis();
+        try {
+            validateDuplicateMember(member); //중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join " + timeMs + "ms");
+        }
     }
 
     /**
@@ -61,8 +77,22 @@ public class MemberService {
     /**
      * 전체 회원 조회
      */
+//    public List<Member> findMembers() {
+//        return memberRepository.findAll();
+//    }
+
+    /**
+     * AOP가 필요한 상황 : 시간을 측정하는 로직 추가 (공통 관심 사항)
+     */
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers " + timeMs + "ms");
+        }
     }
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
