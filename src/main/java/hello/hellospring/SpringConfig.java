@@ -24,15 +24,19 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class SpringConfig {
-
-    //private final DataSource dataSource;
-    private final EntityManager em;
-
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        //this.dataSource = dataSource;
-        this.em = em;
+    // 스프링 데이터 JPA
+    private final MemberRepository memberRepository;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
+//    //private final DataSource dataSource;
+//    private final EntityManager em;
+//
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        //this.dataSource = dataSource;
+//        this.em = em;
+//    }
 
     /**
      * DataSource는 데이터베이스 커넥션을 획득할 때 사용하는 객체다.
@@ -48,7 +52,8 @@ public class SpringConfig {
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        //return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
     /**
@@ -59,6 +64,7 @@ public class SpringConfig {
      * 스프링의 DI (Dependencies Injection)을 사용하면 기존 코드를 전혀 손대지 않고,
      * 설정만으로 구현 클래스를 변경할 수 있다.
      */
+/*
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
@@ -66,4 +72,5 @@ public class SpringConfig {
 //        return new JdbcTemplateMemberRepository(dataSource);
         return new JpaMemberRepository(em);
     }
+*/
 }
