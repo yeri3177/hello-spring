@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 /**
@@ -22,6 +23,10 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+
+        // memberService = class hello.hellospring.service.MemberService$$SpringCGLIB$$0
+        // ↑ AOP에 의해 컨트롤러가 가짜 서비스인 프록시 memberService 호출함 (MemberService$$SpringCGLIB$$0)
+        System.out.println("memberService = " + memberService.getClass());
     }
 
     @GetMapping(value = "/members/new")
